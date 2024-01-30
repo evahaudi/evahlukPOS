@@ -1,0 +1,1 @@
+This is a project to create a restaurant POS called evahluk, the backend is created using python and its restframework called Django, the front end is developed using react js amd material ui for theming, responsive UI and designing .
