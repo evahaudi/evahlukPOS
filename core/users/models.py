@@ -29,6 +29,7 @@ class Users(AbstractUser):
     experience_years = models.IntegerField(null=True, blank=True)
     department = models.CharField(max_length=255, null=True, blank=True)
     fullname = models.CharField(max_length=255, null=True, blank=True)
+    email = models.EmailField(unique=True)
     
     def __str__(self):
         return self.username
