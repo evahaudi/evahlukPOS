@@ -5,14 +5,14 @@ from users.models import Users, Chef, Manager, Waiter
 class UsersSerializer(serializers.ModelSerializer):
     class Meta:
         model = Users
-        fields = ['id', 'username', 'email','fullname', 'is_chef', 'is_manager', 'is_waiter', 'date_of_birth', 'location','experience_years', 'phone', 'created_at', 'updated_at','department', 'role']
+        fields = ['id', 'username', 'email','fullname', 'is_chef', 'is_manager', 'is_waiter', 'birthdate', 'location','experienceyears', 'phone', 'created_at', 'updated_at','department', 'role']
 
 class ChefSerializer(serializers.ModelSerializer):
     password2=serializers.CharField(style={'input_type':'password'}, write_only=True)
     user = UsersSerializer()
     class Meta:
         model = Users
-        fields = ['id', 'user', 'username','fullname', 'email','password2', 'cuisine_specialty', 'experience_years']
+        fields = ['id', 'user', 'username','fullname', 'email','password2', 'cuisine_specialty', 'experienceyears']
         extra_kwargs={
             'password':{'write_only':True}
         }
@@ -58,7 +58,7 @@ class ChefSignupView(serializers.ModelSerializer):
     password2=serializers.CharField(style={'input_type':'password'}, write_only=True)
     class Meta:
         model=Users
-        fields = ['id','username','email', 'fullname', 'date_of_birth', 'location','experience_years', 'phone','department','password','password2', 'role']
+        fields = ['id','username','email', 'fullname', 'birthdate', 'location','experienceyears', 'phone','department','password','password2', 'role']
         extra_kwargs={
             'password':{'write_only':True}
         }
@@ -71,10 +71,10 @@ class ChefSignupView(serializers.ModelSerializer):
         password2 = self.validated_data['password2']
         fullname=self.validated_data['fullname']
         location = self.validated_data['location']
-        date_of_birth = self.validated_data['date_of_birth']
+        birthdate = self.validated_data['birthdate']
         phone = self.validated_data['phone']
         department = self.validated_data['department']
-        experience_years = self.validated_data['experience_years']
+        experienceyears = self.validated_data['experienceyears']
         role= self.validated_data['role']
 
         if password != password2:
@@ -85,10 +85,10 @@ class ChefSignupView(serializers.ModelSerializer):
             username=username,
             email=email,
             location=location,
-            date_of_birth=date_of_birth,
+            birthdate=birthdate,
             phone=phone,
             department=department,
-            experience_years=experience_years,
+            experienceyears=experienceyears,
             role=role
         )
         user.set_password(password)
@@ -101,7 +101,7 @@ class ManagerSignupView(serializers.ModelSerializer):
     password2=serializers.CharField(style={'input_type':'password'}, write_only=True)
     class Meta:
         model=Users
-        fields =  ['id','username','email', 'fullname', 'date_of_birth', 'location','experience_years', 'phone','department', 'updated_by','password','password2', 'role']
+        fields =  ['id','username','email', 'fullname', 'birthdate', 'location','experienceyears', 'phone','department', 'updated_by','password','password2', 'role']
         extra_kwargs={
             'password':{'write_only':True}
         }
@@ -113,10 +113,10 @@ class ManagerSignupView(serializers.ModelSerializer):
         password = self.validated_data['password']
         password2 = self.validated_data['password2']
         location = self.validated_data['location']
-        date_of_birth = self.validated_data['date_of_birth']
+        birthdate = self.validated_data['birthdate']
         phone = self.validated_data['phone']
         department = self.validated_data['department']
-        experience_years = self.validated_data['experience_years']
+        experienceyears = self.validated_data['experienceyears']
         role= self.validated_data['role']
 
         if password != password2:
@@ -127,10 +127,10 @@ class ManagerSignupView(serializers.ModelSerializer):
             username=username,
             email=email,
             location=location,
-            date_of_birth=date_of_birth,
+            birthdate=birthdate,
             phone=phone,
             department=department,
-            experience_years=experience_years,
+            experienceyears=experienceyears,
             role=role
         )
         user.set_password(password)
@@ -143,7 +143,7 @@ class WaiterSignupView(serializers.ModelSerializer):
     password2=serializers.CharField(style={'input_type':'password'}, write_only=True)
     class Meta:
         model=Users
-        fields =  ['id','username','email', 'fullname', 'date_of_birth', 'location','experience_years', 'phone','department', 'updated_by','password','password2', 'role']
+        fields =  ['id','username','email', 'fullname', 'birthdate', 'location','experienceyears', 'phone','department', 'updated_by','password','password2', 'role']
         extra_kwargs={
             'password':{'write_only':True}
         }
@@ -155,10 +155,10 @@ class WaiterSignupView(serializers.ModelSerializer):
         password = self.validated_data['password']
         password2 = self.validated_data['password2']
         location = self.validated_data['location']
-        date_of_birth = self.validated_data['date_of_birth']
+        birthdate = self.validated_data['birthdate']
         phone = self.validated_data['phone']
         department = self.validated_data['department']
-        experience_years = self.validated_data['experience_years']
+        experienceyears = self.validated_data['experienceyears']
         role= self.validated_data['role']
 
         if password != password2:
@@ -169,10 +169,10 @@ class WaiterSignupView(serializers.ModelSerializer):
             username=username,
             email=email,
             location=location,
-            date_of_birth=date_of_birth,
+            birthdate=birthdate,
             phone=phone,
             department=department,
-            experience_years=experience_years,
+            experienceyears=experienceyears,
             role=role
                         
         )

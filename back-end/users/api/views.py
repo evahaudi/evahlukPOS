@@ -74,6 +74,7 @@ class CustomAuthToken(ObtainAuthToken):
                 'is_chef': user.is_chef,
                 'is_manager': user.is_manager,
                 'is_waiter': user.is_waiter,
+                'role':user.role,
                 "message": "Login successfully"
             })
         except AuthenticationFailed as e:
