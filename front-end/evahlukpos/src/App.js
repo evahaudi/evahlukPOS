@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
 import ChefDashboard from "./views/dashboard/chefdashbboard";
-import WaiterDashboard from "./views/dashboard/waiterdashboard";
+// import WaiterDashboard from "./views/dashboard/waiterdashboard";
 import ManagerDashboard from "./views/dashboard/waiterdashboard";
 import WaiterLogin from './views/login/WaiterLogin';
 import Register from "./views/signup/Register";
@@ -11,6 +11,9 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import ManagerLogin from './views/login/ManagerLogin';
 import ChefLogin from './views/login/ChefLogin';
+import WaiterSidebar from "./views/global/WaiterSidebar"
+import ManagerSidebar from './views/global/ManagerSidebar';
+import ChefSidebar from './views/global/ChefSidebar';
 
 const ROLES = {
   'isChef': 'isChef',
@@ -43,9 +46,18 @@ function App() {
 
 
                   {/* we want to protect these routes */}
-                  <Route element={<RequireAuth allowedRoles={[ROLES.isWaiter]} />}>
+                  {/* <Route element={<RequireAuth allowedRoles={[ROLES.isWaiter]} />}>
                     <Route path="waiterdashboard" element={<WaiterDashboard />} />
+                  </Route> */}
+                  <Route element={<RequireAuth allowedRoles={[ROLES.isWaiter]} />}>
+                    <Route path="waitersidebar" element={<WaiterSidebar />} />
                   </Route>
+                  <Route element={<RequireAuth allowedRoles={[ROLES.isManager]} />}>
+                    <Route path="managersidebar" element={<ManagerSidebar />} />
+                  </Route>
+                  <Route element={<RequireAuth allowedRoles={[ROLES.isChef]} />}>
+                    <Route path="chefsidebar" element={<ChefSidebar />} />
+                  </Route>                  
                   <Route element={<RequireAuth allowedRoles={[ROLES.isManager]} />}>
                     <Route path="managerdashboard" element={<ManagerDashboard />} />
                   </Route>

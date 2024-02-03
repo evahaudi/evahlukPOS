@@ -58,7 +58,7 @@ const ManagerLogin = () => {
             }).then(() => {
                 if (isManager) {
                     console.log('Redirecting to /dashboard');
-                    navigate('/managerdashboard');
+                    navigate('/managersidebar');
                 } else {
                     // Redirect to another default page
                     console.log('Redirecting to /login');

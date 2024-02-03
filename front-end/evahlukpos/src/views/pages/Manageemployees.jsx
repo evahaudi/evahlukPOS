@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const ManagerDashboard = () => {
+const ManageEmployees = () => {
   const classes = useStyles();
 
 
@@ -40,4 +40,4 @@ const ManagerDashboard = () => {
   );
 };
 
-export default ManagerDashboard;
+export default ManageEmployees;

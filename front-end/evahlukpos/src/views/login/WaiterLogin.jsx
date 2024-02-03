@@ -59,7 +59,7 @@ const WaiterLogin = () => {
             }).then(() => {
                 if (isWaiter) {
                     console.log('Redirecting to /dashboard');
-                    navigate('/waiterdashboard');
+                    navigate('/waitersidebar');
                 } else {
                     // Redirect to another default page
                     console.log('Redirecting to /login');

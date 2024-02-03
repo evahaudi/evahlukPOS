@@ -14,7 +14,7 @@ html {
 
 body {
     min-height: 100vh;
-    background-color:grey;
+    background-color:blue;
 }
 
 .App {
@@ -24,25 +24,35 @@ body {
   align-items: center;
   min-height: 100vh; 
   padding: 1rem 0.5rem;
+  background-image: url("/src/resto.jpeg");
 }
 
 section {
     width: 100%;
-    max-width: 420px;
+    max-width: 700px;
     min-height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     padding: 1rem;
-    background-color: rgba(0,0,0,0.4);
+    background-color:green;
+    border-radius: 10px;
 }
 
+.input-container {
+    width: calc(33.33% - 16px); /* Adjust as needed */
+    margin-bottom: 1rem; /* Adjust as needed */
+  }
+  
 form {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     flex-grow: 1;
-    padding-bottom: 1rem;
+    padding-bottom: 2rem;
+    max-width: 900px; /* Adjust as needed */
+    margin: auto;
+    padding: 10px;
 }
 
 a, a:visited {
@@ -92,7 +102,7 @@ button {
 }
 
 .valid {
-    color: limegreen;
+    color:greenyellow;
     margin-left: 0.25rem;
 }
 
@@ -119,3 +129,34 @@ button {
     justify-content: flex-start;
     align-items: flex-end;
 }
+
+
+/* Add these styles to your CSS */
+.responsive-form {
+    width: 100%;
+    max-width: 700px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem;
+    background-color:gray;
+    border-radius: 10px;
+  }
+  
+  /* Adjustments for smaller screens */
+  @media (max-width: 600px) {
+    .responsive-form {
+      padding: 10px;
+    }
+  
+    /* You might need to further adjust specific elements */
+    .responsive-form label,
+    .responsive-form input,
+    .responsive-form select,
+    .responsive-form button {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+  

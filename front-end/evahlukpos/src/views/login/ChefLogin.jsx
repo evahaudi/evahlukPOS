@@ -57,7 +57,7 @@ const ChefLogin = () => {
             }).then(() => {
                 if (isChef) {
                     console.log('Redirecting to /chefdashboard');
-                    navigate('/chefdashboard');
+                    navigate('/chefsidebar');
                 } else {
                     // Redirect to another default page
                     console.log('Redirecting to /cheflogin');
