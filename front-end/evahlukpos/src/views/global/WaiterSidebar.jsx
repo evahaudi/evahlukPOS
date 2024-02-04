@@ -31,7 +31,9 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    marginTop: theme.spacing(8), // Adjust this value to your preference
+    marginTop: theme.spacing(8),
+    marginBottom:theme.spacing(8),
+
   },
   content: {
     flexGrow: 1,
@@ -43,13 +45,14 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     marginTop: 'auto',
     height:'10px',
-    alignContent:'center',
     backgroundColor: 'green',
+    padding: theme.spacing(2),
     width: '100%',
     color:'white',
     position: 'fixed',
     bottom: 0,
-    zIndex: theme.zIndex.drawerPaper + 1,
+    textAlign: 'center',
+    zIndex: theme.zIndex.drawer + 1,
     left: 0,
 
     [theme.breakpoints.up('sm')]: {
@@ -163,9 +166,9 @@ const WaiterSidebar = () => {
         <Toolbar />
         {renderPage()}
       </main>
-      <Box className={classes.footer} justify-content={'center'}>
+      <Box className={classes.footer} >
         <Typography variant="body2" align="center">
-          © 2024 Your Website Name. All rights reserved.
+          © 2024 evahlukPOS. All rights reserved.
         </Typography>
       </Box>
     </div>

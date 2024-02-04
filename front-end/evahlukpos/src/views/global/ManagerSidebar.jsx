@@ -183,7 +183,7 @@ const ManagerSidebar = () => {
       </main>
       <Box className={classes.footer} justify-content={'center'}>
         <Typography variant="body2" align="center">
-          © 2024 Your Website Name. All rights reserved.
+          © 2024 evahlukPOS. All rights reserved.
         </Typography>
       </Box>
     </div>

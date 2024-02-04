@@ -75,7 +75,7 @@ const ManagerLogin = () => {
             } else if (err.response?.status === 401) {
                 setErrMsg('Unauthorized');
             } else {
-                setErrMsg('Login Failed');
+                setErrMsg('Wrong username or password');
             }
             errRef.current.focus();
         }
