@@ -326,7 +326,7 @@ const Register = () => {
                                 <FontAwesomeIcon icon={faCheck} className={validDate ? "valid" : "hide"} />
                                 <FontAwesomeIcon icon={faTimes} className={validDate || !birthdate ? "hide" : "invalid"} />
                                 <Input
-                                    type="text"
+                                    type="date"
                                     id="date"
                                     ref={dateRef}
                                     placeholder="Type in here…"
