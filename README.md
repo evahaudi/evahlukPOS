@@ -71,8 +71,7 @@ Open a web browser and navigate to http://localhost:3000 to access the Evahluk P
 ![Screenshot 3](POSpic3.jpg)
 *Dashboard for waiter*
 
-!Screenshot 4
-POSpic4.jpg
+![Screenshot 4](front-end/evahlukpos/POSpic4.jpg)
 *Success!*
 
 
