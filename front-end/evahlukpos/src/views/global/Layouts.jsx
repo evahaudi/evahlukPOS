@@ -4,26 +4,25 @@ import MyAppBar from '../pages/Theappbar';
 import Footer from '../pages/Thefooter';
 
 const Layout = ({ children }) => {
-  const location = useLocation();
+    const location = useLocation();
 
-  // Check if the current path is a sidebar route
-  const isSidebarRoute = () => {
+    const isSidebarRoute = () => {
+        return (
+            location.pathname === '/waitersidebar' ||
+            location.pathname === '/managersidebar' ||
+            location.pathname === '/chefsidebar'
+        );
+    };
+
     return (
-      location.pathname === '/waitersidebar' ||
-      location.pathname === '/managersidebar' ||
-      location.pathname === '/chefsidebar'
+        <div>
+            {!isSidebarRoute() && <MyAppBar />}
+            <main className="App">
+                {children}
+            </main>
+            <Footer />
+        </div>
     );
-  };
-
-  return (
-    <div>
-      {!isSidebarRoute() && <MyAppBar />}
-      <main className="App">
-        {children}
-      </main>
-      <Footer />
-    </div>
-  );
 };
 
 export default Layout;

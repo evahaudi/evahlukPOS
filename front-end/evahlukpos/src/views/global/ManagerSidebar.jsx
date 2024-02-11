@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   listItem: {
     '&.Mui-selected': {
       backgroundColor: 'purple',
-      color: 'white', 
+      color: 'white',
     },
   },
   drawer: {
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    marginTop: theme.spacing(8), // Adjust this value to your preference
+    marginTop: theme.spacing(8),
   },
   content: {
     flexGrow: 1,
@@ -53,27 +53,27 @@ const useStyles = makeStyles((theme) => ({
   },
   footer: {
     marginTop: 'auto',
-    height:'10px',
-    alignContent:'center',
+    height: '10px',
+    alignContent: 'center',
     backgroundColor: 'green',
     width: '100%',
-    color:'white',
+    color: 'white',
     position: 'fixed',
     bottom: 0,
     zIndex: theme.zIndex.drawerPaper + 1,
     left: 0,
 
     [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing(3), // Increase padding for small screens and larger
+      padding: theme.spacing(3),
     },
 
     [theme.breakpoints.up('md')]: {
-      fontSize: '1.2rem', // Increase font size for medium screens and larger
+      fontSize: '1.2rem',
     },
 
     [theme.breakpoints.up('lg')]: {
-      padding: theme.spacing(4), // Increase padding for large screens and larger
-      fontSize: '1.5rem', 
+      padding: theme.spacing(4),
+      fontSize: '1.5rem',
     },
   },
 }));
@@ -84,26 +84,26 @@ const ManagerSidebar = () => {
   const [currentPage, setCurrentPage] = useState('Managerdashboard');
   const [userDetails, setUserDetails] = useState({});
   const [username, setUsername] = useState({ username: '' })
-  
+
 
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const storedUsername = localStorage.getItem('username'); 
+        const storedUsername = localStorage.getItem('username');
         if (storedUsername) {
           setUsername(storedUsername);
           const response = await axios.get(`http://localhost:8000/api/getuserbyusername/?username=${storedUsername}`);
           setUserDetails(response.data);
         }
-        
+
       } catch (error) {
         console.error('Error fetching user details:', error);
       }
     };
     fetchUserDetails();
   }, []);
-  
-  
+
+
 
   const renderProfilePicture = () => {
     if (userDetails && userDetails.user_image) {
@@ -117,7 +117,7 @@ const ManagerSidebar = () => {
 
   const handleLogout = async () => {
     try {
-      const storedToken = localStorage.getItem('token'); // Corrected to retrieve the token
+      const storedToken = localStorage.getItem('token');
       console.log("storedToken", storedToken)
       if (!storedToken) {
         console.error('No authentication token found');
@@ -134,7 +134,7 @@ const ManagerSidebar = () => {
       }
       await axios.post('http://localhost:8000/api/logout/', null, config);
       localStorage.removeItem('token');
-      window.location.href = '/login'; // Example of redirecting to a login page
+      window.location.href = '/login';
     } catch (error) {
       console.error('Error logging out:', error);
     }
@@ -172,7 +172,7 @@ const ManagerSidebar = () => {
       case 'ManagerEmployees':
         return <ManageEmployees />;
       case 'Profile':
-        return <Profile  />;
+        return <Profile />;
       case 'Manageorders':
         return <ManageOrders />;
       default:
@@ -194,7 +194,7 @@ const ManagerSidebar = () => {
           </IconButton>
           <div className={classes.profileIcon}>
             <IconButton color="inherit" onClick={handleProfileMenuOpen}>
-            {renderProfilePicture()}
+              {renderProfilePicture()}
             </IconButton>
             <Menu
               id="profile-menu"
@@ -227,23 +227,23 @@ const ManagerSidebar = () => {
             <ListItemText primary="Dashboard" />
           </ListItem>
           <ListItem className={classes.listItem} selected={currentPage === 'Managestocks'}
-          button onClick={() => handlePageChange('Managestock')}>
-          <ListItemText primary="Manage Stock" />
+            button onClick={() => handlePageChange('Managestock')}>
+            <ListItemText primary="Manage Stock" />
           </ListItem>
-          <ListItem className={classes.listItem} selected={currentPage === 'Managesales'} 
-          button onClick={() => handlePageChange('Managesales')}>
+          <ListItem className={classes.listItem} selected={currentPage === 'Managesales'}
+            button onClick={() => handlePageChange('Managesales')}>
             <ListItemText primary="Manage Sales" />
           </ListItem>
           <ListItem className={classes.listItem} selected={currentPage === 'Manageemployees'}
-          button onClick={() => handlePageChange('Manageemployees')}>
-          <ListItemText primary="Manage Employees" />
+            button onClick={() => handlePageChange('Manageemployees')}>
+            <ListItemText primary="Manage Employees" />
           </ListItem>
           <ListItem className={classes.listItem} selected={currentPage === 'Profile'}
-          button onClick={() => handlePageChange('Profile')}>
-          <ListItemText primary="Profile" />
+            button onClick={() => handlePageChange('Profile')}>
+            <ListItemText primary="Profile" />
           </ListItem>
           <ListItem className={classes.listItem} selected={currentPage === 'Manageorders'}
-          button onClick={() => handlePageChange('Manageorders')}>
+            button onClick={() => handlePageChange('Manageorders')}>
             <ListItemText primary="Manage Orders" />
           </ListItem>
         </List>

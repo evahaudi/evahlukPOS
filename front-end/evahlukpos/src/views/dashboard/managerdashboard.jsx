@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '100vh',
     minWidth: '100vh',
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '100%', // Adjust the maximum width for small screens
+      maxWidth: '100%', 
     },
   },
   iconButton: {

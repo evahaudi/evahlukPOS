@@ -57,15 +57,12 @@ const Register = () => {
     const [departmentFocus, setDepartmentFocus] = useState(false);
     const [validName, setValidName] = useState(false);
     const [userFocus, setUserFocus] = useState(false);
-
     const [password, setPwd] = useState('');
     const [validPwd, setValidPwd] = useState(false);
     const [pwdFocus, setPwdFocus] = useState(false);
-
     const [password2, setMatchPwd] = useState('');
     const [validMatch, setValidMatch] = useState(false);
     const [matchFocus, setMatchFocus] = useState(false);
-
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
     const navigate = useNavigate(success);
@@ -150,7 +147,6 @@ const Register = () => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // if button enabled with JS hack
         const validations = [
             USER_REGEX.test(username),
             EMAIL_REGEX.test(email),
@@ -198,23 +194,17 @@ const Register = () => {
 
                 }
             );
-            // TODO: remove console.logs before deployment
+            
             console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response))
+            
             setSuccess(true);
-            //clear state and controlled inputs
             Swal.fire({
                 icon: 'success',
                 title: 'Registration Successful!',
                 text: 'You can now log in with your credentials.',
             }).then(() => {
-                if (role === 'Waiter') {
-                    navigate('/WaiterLogin');
-                } else if (role === 'Chef') {
-                    navigate('/ChefLogin');
-                } else if (role === 'Manager') {
-                    navigate('/ManagerLogin');
-                }
+                navigate('/login')
+
 
             });
             setUser('');
@@ -522,21 +512,21 @@ const Register = () => {
                             </Select>
                         </Grid>
                     </Grid>
-                    <br/>
+                    <br />
                     <Button variant="contained" color="success" type="submit" disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</Button>
                 </form>
                 <Grid>
                     <Typography>
                         Already registered?<br />
                         <span className="line">
-                    <Link to="/login">Log In</Link>
-                </span>
+                            <Link to="/login">Log In</Link>
+                        </span>
                     </Typography>
-                    <br/>
+                    <br />
                 </Grid>
             </section>
-            <br/>
-            <br/>
+            <br />
+            <br />
 
 
         </>
