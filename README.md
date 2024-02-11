@@ -71,6 +71,9 @@ Open a web browser and navigate to http://localhost:3000 to access the Evahluk P
 ![Screenshot 3](POSpic3.jpg)
 *Dashboard for waiter*
 
+![Screenshot 3](POSpic4.jpg)
+*Success!*
+
 
 Contributing
 Everlyne
