@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import { List, ListItem, ListItemText } from '@material-ui/core';
@@ -13,6 +13,8 @@ import WaiterDashboard from "../dashboard/waiterdashboard";
 import Profile from '../pages/WaiterProfile';
 import ManageOrders from '../pages/Manageorders';
 import Box from '@material-ui/core/Box';
+import axios from 'axios';
+import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
 const drawerWidth = 240;
@@ -29,10 +31,16 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     flexShrink: 0,
   },
+  listItem: {
+    '&.Mui-selected': {
+      backgroundColor: 'purple',
+      color: 'white', 
+    },
+  },
   drawerPaper: {
     width: drawerWidth,
     marginTop: theme.spacing(8),
-    marginBottom:theme.spacing(8),
+    marginBottom: theme.spacing(8),
 
   },
   content: {
@@ -44,11 +52,11 @@ const useStyles = makeStyles((theme) => ({
   },
   footer: {
     marginTop: 'auto',
-    height:'10px',
+    height: '10px',
     backgroundColor: 'green',
     padding: theme.spacing(2),
     width: '100%',
-    color:'white',
+    color: 'white',
     position: 'fixed',
     bottom: 0,
     textAlign: 'center',
@@ -56,16 +64,16 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
 
     [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing(3), // Increase padding for small screens and larger
+      padding: theme.spacing(3), 
     },
 
     [theme.breakpoints.up('md')]: {
-      fontSize: '1.2rem', // Increase font size for medium screens and larger
+      fontSize: '1.2rem', 
     },
 
     [theme.breakpoints.up('lg')]: {
-      padding: theme.spacing(4), // Increase padding for large screens and larger
-      fontSize: '1.5rem', // Increase font size for large screens and larger
+      padding: theme.spacing(4), 
+      fontSize: '1.5rem', 
     },
   },
 }));
@@ -74,6 +82,60 @@ const WaiterSidebar = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const [currentPage, setCurrentPage] = useState('Waiterdashboard');
+
+  const [userDetails, setUserDetails] = useState({});
+  const [username, setUsername] = useState({ username: '' })
+
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const storedUsername = localStorage.getItem('username');
+        if (storedUsername) {
+          setUsername(storedUsername);
+          const response = await axios.get(`http://localhost:8000/api/getuserbyusername/?username=${storedUsername}`);
+          setUserDetails(response.data);
+        }
+      } catch (error) {
+        console.error('Error fetching user details:', error);
+      }
+    };
+    fetchUserDetails();
+  }, []);
+
+  const renderProfilePicture = () => {
+    if (userDetails && userDetails.user_image) {
+      return (
+        <Avatar src={`http://localhost:8000${userDetails.user_image}`} alt="Profile Picture" />
+      );
+    }
+    return <AccountCircleIcon />;
+  };
+
+  const handleLogout = async () => {
+    try {
+      const storedToken = localStorage.getItem('token'); 
+      console.log("storedToken", storedToken)
+      if (!storedToken) {
+        console.error('No authentication token found');
+        return;
+      }
+      const config = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+
+      if (storedToken) {
+        config.headers['Authorization'] = `Token ${storedToken}`
+      }
+      await axios.post('http://localhost:8000/api/logout/', null, config);
+      localStorage.removeItem('token');
+      window.location.href = '/login'; 
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -124,7 +186,7 @@ const WaiterSidebar = () => {
           </IconButton>
           <div className={classes.profileIcon}>
             <IconButton color="inherit" onClick={handleProfileMenuOpen}>
-              <AccountCircleIcon />
+              {renderProfilePicture()}
             </IconButton>
             <Menu
               id="profile-menu"
@@ -133,7 +195,8 @@ const WaiterSidebar = () => {
               open={Boolean(anchorEl)}
               onClose={handleProfileMenuClose}
             >
-              <MenuItem onClick={handleProfileMenuClose}>Profile</MenuItem>
+              <MenuItem onClick={() => handlePageChange('Profile')}>Profile</MenuItem>
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
               <MenuItem onClick={handleProfileMenuClose}>Settings</MenuItem>
               <MenuItem onClick={handleProfileMenuClose}>Notifications</MenuItem>
             </Menu>
@@ -149,15 +212,19 @@ const WaiterSidebar = () => {
         classes={{
           paper: classes.drawerPaper,
         }}
+        style={{ zIndex: 98 }}
       >
         <List>
-          <ListItem button onClick={() => handlePageChange('Waiterdashboard')}>
-            <ListItemText primary="Dashboard" />
+          <ListItem className={classes.listItem} selected={currentPage === 'Waiterdashboard'}
+          button onClick={() => handlePageChange('Waiterdashboard')}>
+          <ListItemText primary="Dashboard" />
           </ListItem>
-          <ListItem button onClick={() => handlePageChange('Profile')}>
-            <ListItemText primary="Profile" />
+          <ListItem className={classes.listItem} selected={currentPage === 'Profile'}
+          button onClick={() => handlePageChange('Profile')}>
+          <ListItemText primary="Profile" />
           </ListItem>
-          <ListItem button onClick={() => handlePageChange('Manageorders')}>
+          <ListItem className={classes.listItem} selected={currentPage === 'Manageorders'}
+          button onClick={() => handlePageChange('Manageorders')}>
             <ListItemText primary="Manage Orders" />
           </ListItem>
         </List>
