@@ -75,7 +75,7 @@ Open a web browser and navigate to http://localhost:3000 to access the Evahluk P
 *Success!*
 
 [
-![POSpic1](https://github.com/evahaudi/evahlukPOS/assets/122022619/6d4c6fa3-dcec-4a06-9d2f-9603df194660)
+![POSpic1](front-end\evahlukpos\POSpic1.JPG)
 ![POSpic2](https://github.com/evahaudi/evahlukPOS/assets/122022619/ab1ce8c0-5fd1-4e52-8739-905fbfe0ce75)
 ![POSpic3](https://github.com/evahaudi/evahlukPOS/assets/122022619/8852cf04-9c3a-43c3-a110-5d61952082eb)
 ![POSpic4](https://github.com/evahaudi/evahlukPOS/assets/122022619/c0ec97ea-9a59-4b1d-99dc-02801911cdf5)
