@@ -56,8 +56,10 @@ bash
 Copy code
 npm start!
 [Uploading POSpic4.png…]()
+![POSpic1](https://github.com/evahaudi/evahlukPOS/assets/122022619/10e01860-167b-49c9-a0f1-40e7216a4230)
 
 
+![POSpic4 png](https://github.com/evahaudi/evahlukPOS/assets/122022619/a185c288-a118-411a-9a8f-27e66b813575)
 
 Access the Application:
 Open a web browser and navigate to http://localhost:3000 to access the Evahluk POS system.
