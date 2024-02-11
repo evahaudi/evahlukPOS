@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '100vh',
     minWidth: '100vh',
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '100%', // Adjust the maximum width for small screens
+      maxWidth: '100%', 
     },
   },
   iconButton: {
@@ -72,8 +72,8 @@ const ChefDashboard = () => {
               Order Status
             </Typography>
             <Button variant="contained" color="primary" className={classes.button}>
-          View Order Details
-        </Button>
+              View Order Details
+            </Button>
           </Grid>
           <Grid item xs={12} md={4}>
             <IconButton className={classes.iconButton} color="primary">

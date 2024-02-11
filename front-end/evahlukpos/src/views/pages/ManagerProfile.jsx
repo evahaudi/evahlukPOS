@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(3),
     margin: theme.spacing(2),
-    minHeight: '100vh', // Ensure full height of the viewport
+    minHeight: '100vh',
   },
   paper: {
     padding: theme.spacing(3),
@@ -51,130 +51,129 @@ const Profile = () => {
           const response = await axios.get(`http://localhost:8000/api/getuserbyusername/?username=${storedUsername}`);
           setUserDetails(response.data);
         }
-        
+
       } catch (error) {
         console.error('Error fetching user details:', error);
       }
     };
     fetchUserDetails();
   }, []);
-  
+
   const imageUrl = `http://localhost:8000${userDetails.user_image}`;
   const handleUpdateDetails = () => {
-  
+
   };
 
-  
   return (
     <>
-    <Paper className={classes.paper} elevation={3}>
-      <Typography variant="h4" align="center" gutterBottom>
-        Profile Details
-      </Typography>
-      <Grid container spacing={3} alignItems="center">
-      <Grid item xs={12} sm={4}>
-          {userDetails.user_image && (
-            <Avatar
-              src={imageUrl}
-              alt="User"
-              className={classes.avatar}
+      <Paper className={classes.paper} elevation={3}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Profile Details
+        </Typography>
+        <Grid container spacing={3} alignItems="center">
+          <Grid item xs={12} sm={4}>
+            {userDetails.user_image && (
+              <Avatar
+                src={imageUrl}
+                alt="User"
+                className={classes.avatar}
+              />
+            )}
+            <Typography>Profile picture</Typography>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <InputLabel htmlFor="username">Username</InputLabel>
+            <Input
+              id="username"
+              placeholder="Type in here…"
+              variant="outlined"
+              value={userDetails.username}
             />
-          )}
-        <Typography>Profile picture</Typography>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <InputLabel htmlFor="email">Email</InputLabel>
+            <Input
+              id="email"
+              placeholder="Type in here…"
+              variant="outlined"
+              value={userDetails.email}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <InputLabel htmlFor="fullName">Full Name</InputLabel>
+            <Input
+              id="fullName"
+              placeholder="Type in here…"
+              variant="outlined"
+              value={userDetails.fullname}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <InputLabel htmlFor="dob">Date of Birth</InputLabel>
+            <Input
+              id="dob"
+              placeholder="Type in here…"
+              variant="outlined"
+              value={userDetails.birthdate}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <InputLabel htmlFor="location">Location</InputLabel>
+            <Input
+              id="location"
+              placeholder="Type in here…"
+              variant="outlined"
+              value={userDetails.location}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <InputLabel htmlFor="experience">Experience years</InputLabel>
+            <Input
+              id="experience"
+              placeholder="Type in here…"
+              variant="outlined"
+              value={userDetails.experienceyears}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <InputLabel htmlFor="phone">Phone</InputLabel>
+            <Input
+              id="phone"
+              placeholder="Type in here…"
+              variant="outlined"
+              value={userDetails.phone}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <InputLabel htmlFor="department">Department</InputLabel>
+            <Input
+              id="department"
+              placeholder="Type in here…"
+              variant="outlined"
+              value={userDetails.department}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <InputLabel htmlFor="password">Password:</InputLabel>
+            <Input
+              id="password"
+              type="password"
+              value={userDetails.password}
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={4}>
-          <InputLabel htmlFor="username">Username</InputLabel>
-          <Input
-            id="username"
-            placeholder="Type in here…"
-            variant="outlined"
-            value={userDetails.username}
-          />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <InputLabel htmlFor="email">Email</InputLabel>
-          <Input
-            id="email"
-            placeholder="Type in here…"
-            variant="outlined"
-            value={userDetails.email}
-          />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <InputLabel htmlFor="fullName">Full Name</InputLabel>
-          <Input
-            id="fullName"
-            placeholder="Type in here…"
-            variant="outlined"
-            value={userDetails.fullname}
-          />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <InputLabel htmlFor="dob">Date of Birth</InputLabel>
-          <Input
-            id="dob"
-            placeholder="Type in here…"
-            variant="outlined"
-            value={userDetails.birthdate}
-          />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <InputLabel htmlFor="location">Location</InputLabel>
-          <Input
-            id="location"
-            placeholder="Type in here…"
-            variant="outlined"
-            value={userDetails.location}
-          />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <InputLabel htmlFor="experience">Experience years</InputLabel>
-          <Input
-            id="experience"
-            placeholder="Type in here…"
-            variant="outlined"
-            value={userDetails.experienceyears}
-          />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <InputLabel htmlFor="phone">Phone</InputLabel>
-          <Input
-            id="phone"
-            placeholder="Type in here…"
-            variant="outlined"
-            value={userDetails.phone}
-          />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <InputLabel htmlFor="department">Department</InputLabel>
-          <Input
-            id="department"
-            placeholder="Type in here…"
-            variant="outlined"
-            value={userDetails.department}
-          />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <InputLabel htmlFor="password">Password:</InputLabel>
-          <Input
-            id="password"
-            type="password"
-            value={userDetails.password}
-          />
-        </Grid>
-      </Grid>
+        <br />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleUpdateDetails}
+        >
+          Update Details
+        </Button>
+      </Paper>
       <br />
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleUpdateDetails}
-      >
-        Update Details
-      </Button>
-    </Paper>
-    <br/>
-    <br/>
-    <br/>
+      <br />
+      <br />
     </>
 
   );

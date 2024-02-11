@@ -61,7 +61,6 @@ class CustomAuthToken(ObtainAuthToken):
         print("Request Data:", request.data)
 
         try:
-            # Check if request.data is empty, and retrieve parameters from the URL
             if not request.data:
                 username = request.query_params.get('username')
                 password = request.query_params.get('password')
@@ -86,7 +85,7 @@ class CustomAuthToken(ObtainAuthToken):
                 'role': user.role,
                 'email':user.email,
                 'username':user.username,
-                'fullname': user.fullname,  # Add any other profile details you want to include
+                'fullname': user.fullname,  
                 'birthdate': user.birthdate,
                 'location': user.location,
                 'phone': user.phone,
@@ -100,13 +99,13 @@ class CustomAuthToken(ObtainAuthToken):
                 "message": "Login successfully"
             })
         except AuthenticationFailed as e:
-            # Log the exception or print for debugging
+            
             print(f"AuthenticationFailed: {e}")
             return Response({"error": str(e)}, status=400)
         except Exception as e:
-            # Log the exception or print for debugging
+            
             print(f"Exception: {e}")
-            # Return a generic error response
+            
             return HttpResponseServerError("Internal Server Error")
              
 
@@ -188,7 +187,7 @@ class DeleteUserByUsername(generics.DestroyAPIView):
 def user_logout(request):
     if request.method == 'POST':
         try:
-            # Delete the user's token to logout
+            
             request.user.auth_token.delete()
             return Response({'message': 'Successfully logged out.'}, status=status.HTTP_200_OK)
         except Exception as e:

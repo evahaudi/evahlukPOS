@@ -7,7 +7,7 @@ import axios from 'axios';
 const LOGIN_URL = 'http://localhost:8000/api/login/';
 
 const ManagerLogin = () => {
-    
+
     const { setAuth } = useAuth();
 
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ const ManagerLogin = () => {
     const [username, setUser] = useState('');
     const [password, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
-    
+
 
     useEffect(() => {
         userRef.current.focus();
@@ -41,7 +41,6 @@ const ManagerLogin = () => {
                 }
             );
             console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
             const accessToken = response?.data?.token;
             const user_profile_data = response?.data?.user_profile_data;
             const isManager = response?.data?.user_profile_data?.is_manager;
@@ -64,12 +63,12 @@ const ManagerLogin = () => {
                     console.log('Redirecting to /dashboard');
                     navigate('/managersidebar');
                 } else {
-                    // Redirect to another default page
+                    
                     console.log('Redirecting to /login');
                     navigate('/managerLogin');
                 }
             })
-            
+
             navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {
