@@ -529,13 +529,14 @@ const Register = () => {
                     <Typography>
                         Already registered?<br />
                         <span className="line">
-                            {role === 'Waiter' && <Link to="/waiterLogin">Sign In as Waiter</Link>}
-                            {role === 'Chef' && <Link to="/chefLogin">Sign In as Chef</Link>}
-                            {role === 'Manager' && <Link to="/managerLogin">Sign In as Manager</Link>}
-                        </span>
+                    <Link to="/login">Log In</Link>
+                </span>
                     </Typography>
+                    <br/>
                 </Grid>
             </section>
+            <br/>
+            <br/>
 
 
         </>

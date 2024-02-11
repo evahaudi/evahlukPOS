@@ -30,6 +30,7 @@ class Users(AbstractUser):
     department = models.CharField(max_length=255, null=True, blank=True)
     fullname = models.CharField(max_length=255, null=True, blank=True)
     email = models.EmailField(unique=True)
+    user_image = models.ImageField(upload_to='user_images/', default='default_user_image.jpg')
     
     def __str__(self):
         return self.username
@@ -38,6 +39,15 @@ class Users(AbstractUser):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+        UserProfile.objects.create(user=instance)
+        
+class UserProfile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='profile', on_delete=models.CASCADE)
+    user_image = models.ImageField(upload_to='user_images/', default='default_user_image.jpg')
+    
+    
+    def __str__(self):
+        return f"Profile for {self.user.username}"
 
 class Chef(models.Model):
     user = models.OneToOneField(Users, related_name="chef", on_delete=models.CASCADE)

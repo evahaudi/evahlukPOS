@@ -43,12 +43,16 @@ const ManagerLogin = () => {
             console.log(JSON.stringify(response?.data));
             //console.log(JSON.stringify(response));
             const accessToken = response?.data?.token;
-            const isManager = response?.data?.is_manager;
-
-            // const role = response?.data?.role;
+            const user_profile_data = response?.data?.user_profile_data;
+            const isManager = response?.data?.user_profile_data?.is_manager;
+            const isUsername = response?.data?.user_profile_data?.username;
+            localStorage.setItem('username', isUsername);
+            localStorage.setItem('token', accessToken);
             console.log("Access Token:", accessToken);
             console.log("Role:", isManager);
-            setAuth({ username, password, isManager, accessToken, roles: ['isManager'] });
+            console.log("User Profile Data:", user_profile_data);
+            console.log("username:", isUsername)
+            setAuth({ isUsername, password, isManager, accessToken, user_profile_data: user_profile_data, roles: ['isManager'] });
             setUser('');
             setPwd('');
             Swal.fire({
@@ -85,7 +89,7 @@ const ManagerLogin = () => {
 
         <section>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-            <h1>Sign In</h1>
+            <h1>Sign In As Manager</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username:</label>
                 <input
@@ -111,7 +115,7 @@ const ManagerLogin = () => {
             <p>
                 Need an Account?<br />
                 <span className="line">
-                    <Link to="/">Sign Up</Link>
+                    <Link to="/register">Sign Up</Link>
                 </span>
             </p>
         </section>
