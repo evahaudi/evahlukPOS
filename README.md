@@ -1,4 +1,4 @@
-# Evahluk Restaurant POS
+![POSpic4](https://github.com/evahaudi/evahlukPOS/assets/122022619/942da668-2bf3-4c0e-b18a-6e064b6f2bb3)# Evahluk Restaurant POS
 
 ## Overview
 
@@ -54,7 +54,9 @@ npm install
 Start the React development server:
 bash
 Copy code
-npm start
+npm start!
+[Uploading POSpic4.png…]()
+
 
 
 Access the Application:
