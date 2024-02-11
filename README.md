@@ -79,7 +79,7 @@ Open a web browser and navigate to http://localhost:3000 to access the Evahluk P
 ![POSpic2](https://github.com/evahaudi/evahlukPOS/assets/122022619/ab1ce8c0-5fd1-4e52-8739-905fbfe0ce75)
 ![POSpic3](https://github.com/evahaudi/evahlukPOS/assets/122022619/8852cf04-9c3a-43c3-a110-5d61952082eb)
 ![POSpic4](https://github.com/evahaudi/evahlukPOS/assets/122022619/c0ec97ea-9a59-4b1d-99dc-02801911cdf5)
-](url)
+]
 
 Contributing
 Everlyne
