@@ -1,4 +1,4 @@
-![POSpic4](https://github.com/evahaudi/evahlukPOS/assets/122022619/942da668-2bf3-4c0e-b18a-6e064b6f2bb3)# Evahluk Restaurant POS
+## Evahluk Restaurant POS
 
 ## Overview
 
@@ -55,35 +55,29 @@ Start the React development server:
 bash
 Copy code
 npm start!
-[Uploading POSpic4.png…]()
-![POSpic1](https://github.com/evahaudi/evahlukPOS/assets/122022619/10e01860-167b-49c9-a0f1-40e7216a4230)
-
-
-![POSpic4 png](https://github.com/evahaudi/evahlukPOS/assets/122022619/a185c288-a118-411a-9a8f-27e66b813575)
 
 Access the Application:
 Open a web browser and navigate to http://localhost:3000 to access the Evahluk POS system.
 
 ## Screenshots
 
-![Screenshot 1](POSpic1.jpg)
+![POSpic1](https://github.com/evahaudi/evahlukPOS/assets/122022619/dd428687-93b1-44a5-9e52-70d618f0b231)
+
 *Landipage View*
 
-![Screenshot 2](POSpic2.jpg)
+![POSpic2](https://github.com/evahaudi/evahlukPOS/assets/122022619/61e32694-a5da-433d-93b6-6008d9f96bec)
+
 *The login page*
 
-![Screenshot 3](POSpic3.jpg)
+![POSpic3](https://github.com/evahaudi/evahlukPOS/assets/122022619/f35a0d5f-b2a5-4689-8023-65fe7efa2ef1)
+
 *Dashboard for waiter*
 
-![Screenshot 4](front-end/evahlukpos/POSpic4.jpg)
+![POSpic4](https://github.com/evahaudi/evahlukPOS/assets/122022619/dd1097ae-90f9-4cfa-9979-0b5c3e7a7da7)
+
 *Success!*
 
-[
-![POSpic1](front-end\evahlukpos\POSpic1.JPG)
-![POSpic2](https://private-user-images.githubusercontent.com/122022619/303921129-00f40fdf-e3cb-4828-bb30-7a0582f51ff1.JPG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDc2NTg1NDIsIm5iZiI6MTcwNzY1ODI0MiwicGF0aCI6Ii8xMjIwMjI2MTkvMzAzOTIxMTI5LTAwZjQwZmRmLWUzY2ItNDgyOC1iYjMwLTdhMDU4MmY1MWZmMS5KUEc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwMjExJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDIxMVQxMzMwNDJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0xNTJkMzBhYmYzZDExOGRmMzU4NDdjMzhiOWFkZGQwMDI4OTY3NTAxNzlhODJjMzIzNjA0YThkMzFlODZlNDMzJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.6fGSQgq-rXKi3f5YiZaOU3fBZvz603g52VSfUnoqOJ8)
-![POSpic3](https://github.com/evahaudi/evahlukPOS/assets/122022619/8852cf04-9c3a-43c3-a110-5d61952082eb)
-![POSpic4](https://github.com/evahaudi/evahlukPOS/assets/122022619/c0ec97ea-9a59-4b1d-99dc-02801911cdf5)
-]
+
 
 Contributing
 Everlyne
