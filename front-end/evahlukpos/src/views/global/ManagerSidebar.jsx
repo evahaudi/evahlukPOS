@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import { List, ListItem, ListItemText } from '@material-ui/core';
@@ -15,6 +15,8 @@ import ManageEmployees from '../pages/Manageemployees';
 import Profile from '../pages/ManagerProfile';
 import ManageOrders from '../pages/Manageorders';
 import Box from '@material-ui/core/Box';
+import axios from 'axios';
+import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import ManagerDashboard from '../dashboard/managerdashboard';
 
@@ -27,6 +29,12 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     backgroundColor: 'green',
+  },
+  listItem: {
+    '&.Mui-selected': {
+      backgroundColor: 'purple',
+      color: 'white', 
+    },
   },
   drawer: {
     width: drawerWidth,
@@ -65,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.up('lg')]: {
       padding: theme.spacing(4), // Increase padding for large screens and larger
-      fontSize: '1.5rem', // Increase font size for large screens and larger
+      fontSize: '1.5rem', 
     },
   },
 }));
@@ -74,7 +82,63 @@ const ManagerSidebar = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const [currentPage, setCurrentPage] = useState('Managerdashboard');
+  const [userDetails, setUserDetails] = useState({});
+  const [username, setUsername] = useState({ username: '' })
+  
 
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const storedUsername = localStorage.getItem('username'); 
+        if (storedUsername) {
+          setUsername(storedUsername);
+          const response = await axios.get(`http://localhost:8000/api/getuserbyusername/?username=${storedUsername}`);
+          setUserDetails(response.data);
+        }
+        
+      } catch (error) {
+        console.error('Error fetching user details:', error);
+      }
+    };
+    fetchUserDetails();
+  }, []);
+  
+  
+
+  const renderProfilePicture = () => {
+    if (userDetails && userDetails.user_image) {
+      return (
+        <Avatar src={`http://localhost:8000${userDetails.user_image}`} alt="Profile Picture" />
+      );
+    }
+    return <AccountCircleIcon />;
+  };
+
+
+  const handleLogout = async () => {
+    try {
+      const storedToken = localStorage.getItem('token'); // Corrected to retrieve the token
+      console.log("storedToken", storedToken)
+      if (!storedToken) {
+        console.error('No authentication token found');
+        return;
+      }
+      const config = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+
+      if (storedToken) {
+        config.headers['Authorization'] = `Token ${storedToken}`
+      }
+      await axios.post('http://localhost:8000/api/logout/', null, config);
+      localStorage.removeItem('token');
+      window.location.href = '/login'; // Example of redirecting to a login page
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -108,7 +172,7 @@ const ManagerSidebar = () => {
       case 'ManagerEmployees':
         return <ManageEmployees />;
       case 'Profile':
-        return <Profile />;
+        return <Profile  />;
       case 'Manageorders':
         return <ManageOrders />;
       default:
@@ -130,7 +194,7 @@ const ManagerSidebar = () => {
           </IconButton>
           <div className={classes.profileIcon}>
             <IconButton color="inherit" onClick={handleProfileMenuOpen}>
-              <AccountCircleIcon />
+            {renderProfilePicture()}
             </IconButton>
             <Menu
               id="profile-menu"
@@ -139,7 +203,8 @@ const ManagerSidebar = () => {
               open={Boolean(anchorEl)}
               onClose={handleProfileMenuClose}
             >
-              <MenuItem onClick={handleProfileMenuClose}>Profile</MenuItem>
+              <MenuItem onClick={() => handlePageChange('Profile')}>Profile</MenuItem>
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
               <MenuItem onClick={handleProfileMenuClose}>Settings</MenuItem>
               <MenuItem onClick={handleProfileMenuClose}>Notifications</MenuItem>
             </Menu>
@@ -155,24 +220,30 @@ const ManagerSidebar = () => {
         classes={{
           paper: classes.drawerPaper,
         }}
+        style={{ zIndex: 98 }}
       >
         <List>
-          <ListItem button onClick={() => handlePageChange('Managerdasshboard')}>
+          <ListItem className={classes.listItem} selected={currentPage === 'Managerdashboard'} button onClick={() => handlePageChange('Managerdashboard')}>
             <ListItemText primary="Dashboard" />
           </ListItem>
-          <ListItem button onClick={() => handlePageChange('Managestock')}>
-            <ListItemText primary="Manage Stock" />
+          <ListItem className={classes.listItem} selected={currentPage === 'Managestocks'}
+          button onClick={() => handlePageChange('Managestock')}>
+          <ListItemText primary="Manage Stock" />
           </ListItem>
-          <ListItem button onClick={() => handlePageChange('Managesales')}>
+          <ListItem className={classes.listItem} selected={currentPage === 'Managesales'} 
+          button onClick={() => handlePageChange('Managesales')}>
             <ListItemText primary="Manage Sales" />
           </ListItem>
-          <ListItem button onClick={() => handlePageChange('Manageemployees')}>
-            <ListItemText primary="Manage Employees" />
+          <ListItem className={classes.listItem} selected={currentPage === 'Manageemployees'}
+          button onClick={() => handlePageChange('Manageemployees')}>
+          <ListItemText primary="Manage Employees" />
           </ListItem>
-          <ListItem button onClick={() => handlePageChange('Profile')}>
-            <ListItemText primary="Profile" />
+          <ListItem className={classes.listItem} selected={currentPage === 'Profile'}
+          button onClick={() => handlePageChange('Profile')}>
+          <ListItemText primary="Profile" />
           </ListItem>
-          <ListItem button onClick={() => handlePageChange('Manageorders')}>
+          <ListItem className={classes.listItem} selected={currentPage === 'Manageorders'}
+          button onClick={() => handlePageChange('Manageorders')}>
             <ListItemText primary="Manage Orders" />
           </ListItem>
         </List>

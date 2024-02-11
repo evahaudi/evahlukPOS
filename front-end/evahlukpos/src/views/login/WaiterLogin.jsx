@@ -7,7 +7,7 @@ import axios from 'axios';
 const LOGIN_URL = 'http://localhost:8000/api/login/';
 
 const WaiterLogin = () => {
-    
+
     const { setAuth } = useAuth();
 
     const navigate = useNavigate();
@@ -16,15 +16,26 @@ const WaiterLogin = () => {
 
     const userRef = useRef();
     const errRef = useRef();
+    const pwdRef = useRef();
 
     const [username, setUser] = useState('');
     const [password, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
-    
+
+
 
     useEffect(() => {
+        console.log("userRef:", userRef); // Log userRef
+        console.log("userRef.current:", userRef.current);
         userRef.current.focus();
-    }, [])
+    }, [username])
+
+    useEffect(() => {
+        console.log("userRef:", userRef); // Log userRef
+        console.log("userRef.current:", userRef.current);
+        pwdRef.current.focus();
+    }, [password])
+
 
     useEffect(() => {
         setErrMsg('');
@@ -41,15 +52,16 @@ const WaiterLogin = () => {
                 }
             );
             console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
             const accessToken = response?.data?.token;
-            const isWaiter = response?.data?.is_waiter;
-            // const isManager = response?.data?.is_manager;
-            // const isChef = response?.data?.is_chef;
-            // const role = response?.data?.role;
+            const isWaiter = response?.data?.user_profile_data?.is_waiter;
+            const user_profile_data = response?.data?.user_profile_data;
+            const isUsername = response?.data?.user_profile_data?.username;
+            localStorage.setItem('username', isUsername);
+            localStorage.setItem('token', accessToken);
             console.log("Access Token:", accessToken);
             console.log("Role:", isWaiter);
-            setAuth({ username, password, isWaiter, accessToken, roles: ['isWaiter'] });
+            console.log("User Profile Data:", user_profile_data);
+            setAuth({ isUsername, password, isWaiter, accessToken, user_profile_data: user_profile_data, roles: ['isWaiter'] });
             setUser('');
             setPwd('');
             Swal.fire({
@@ -66,7 +78,7 @@ const WaiterLogin = () => {
                     navigate('/waiterLogin');
                 }
             })
-            
+
             navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {
@@ -86,7 +98,7 @@ const WaiterLogin = () => {
 
         <section>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-            <h1>Sign In</h1>
+            <h1>Sign In As Waiter</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username:</label>
                 <input
@@ -103,6 +115,7 @@ const WaiterLogin = () => {
                 <input
                     type="password"
                     id="password"
+                    ref={pwdRef}
                     onChange={(e) => setPwd(e.target.value)}
                     value={password}
                     required
@@ -112,7 +125,7 @@ const WaiterLogin = () => {
             <p>
                 Need an Account?<br />
                 <span className="line">
-                    <Link to="/">Sign Up</Link>
+                    <Link to="/register">Sign Up</Link>
                 </span>
             </p>
         </section>

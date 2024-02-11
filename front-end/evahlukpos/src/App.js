@@ -1,8 +1,5 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
-import ChefDashboard from "./views/dashboard/chefdashbboard";
-// import WaiterDashboard from "./views/dashboard/waiterdashboard";
-import ManagerDashboard from "./views/dashboard/waiterdashboard";
 import WaiterLogin from './views/login/WaiterLogin';
 import Register from "./views/signup/Register";
 import Layout from "./views/global/Layouts";
@@ -14,6 +11,10 @@ import ChefLogin from './views/login/ChefLogin';
 import WaiterSidebar from "./views/global/WaiterSidebar"
 import ManagerSidebar from './views/global/ManagerSidebar';
 import ChefSidebar from './views/global/ChefSidebar';
+import AboutUs from './views/pages/About';
+import Home from './views/pages/Home';
+import ContactUs from './views/pages/Contact';
+import CustomLogin from './views/login/Customlogin';
 
 const ROLES = {
   'isChef': 'isChef',
@@ -22,51 +23,39 @@ const ROLES = {
   'isManager': 'isManager'
 }
 
-
 function App() {
   const [theme, colorMode] = useMode();
-  
 
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className="app">
-                 
+          <Layout>
             <Routes>
-              {/* <Route path="/" element={Dashboard}/>
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} /> */}
-                <Route path="/" element={<Layout />}>
-                  {/* public routes */}
-                  <Route path="/waiterLogin" element={<WaiterLogin />} />
-                  <Route path="/chefLogin" element={<ChefLogin />} />
-                  <Route path="/managerLogin" element={<ManagerLogin />} />
-                  <Route path="/" element={<Register />} />
 
-
-                  {/* we want to protect these routes */}
-                  {/* <Route element={<RequireAuth allowedRoles={[ROLES.isWaiter]} />}>
-                    <Route path="waiterdashboard" element={<WaiterDashboard />} />
-                  </Route> */}
-                  <Route element={<RequireAuth allowedRoles={[ROLES.isWaiter]} />}>
-                    <Route path="waitersidebar" element={<WaiterSidebar />} />
-                  </Route>
-                  <Route element={<RequireAuth allowedRoles={[ROLES.isManager]} />}>
-                    <Route path="managersidebar" element={<ManagerSidebar />} />
-                  </Route>
-                  <Route element={<RequireAuth allowedRoles={[ROLES.isChef]} />}>
-                    <Route path="chefsidebar" element={<ChefSidebar />} />
-                  </Route>                  
-                  <Route element={<RequireAuth allowedRoles={[ROLES.isManager]} />}>
-                    <Route path="managerdashboard" element={<ManagerDashboard />} />
-                  </Route>
-                  <Route element={<RequireAuth allowedRoles={[ROLES.isChef]} />}>
-                    <Route path="chefdashboard" element={<ChefDashboard />} />
-                  </Route>
-                  
-                  </Route>
-              </Routes>
+              {/* public routes */}
+              <Route path="/waiterLogin" element={<WaiterLogin />} />
+              <Route path="/chefLogin" element={<ChefLogin />} />
+              <Route path="/managerLogin" element={<ManagerLogin />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/contact" element={<ContactUs />} />
+              <Route path="/about" element={<AboutUs />} />
+              <Route path="/login" element={<CustomLogin />} />
+              <Route path="/" element={<Home />} />
+            
+              {/* protected  routes*/}
+              <Route element={<RequireAuth allowedRoles={[ROLES.isWaiter]} />}>
+                <Route path="waitersidebar" element={<WaiterSidebar />} />
+              </Route>
+              <Route element={<RequireAuth allowedRoles={[ROLES.isManager]} />}>
+                <Route path="managersidebar" element={<ManagerSidebar />} />
+              </Route>
+              <Route element={<RequireAuth allowedRoles={[ROLES.isChef]} />}>
+                <Route path="chefsidebar" element={<ChefSidebar />} />
+              </Route>
+            </Routes>
+          </Layout>
         </div>
       </ThemeProvider>
     </ColorModeContext.Provider>

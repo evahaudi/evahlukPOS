@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import { List, ListItem, ListItemText } from '@material-ui/core';
@@ -9,11 +9,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import axios from 'axios';
+import Avatar from '@material-ui/core/Avatar';
 import Profile from '../pages/ChefProfile';
 import ManageOrders from '../pages/Manageorders';
 import ChefDashboard from '../dashboard/chefdashbboard';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+
 
 const drawerWidth = 240;
 
@@ -24,6 +25,12 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     backgroundColor: 'green',
+  },
+  listItem: {
+    '&.Mui-selected': {
+      backgroundColor: 'purple',
+      color: 'white', 
+    },
   },
   drawer: {
     width: drawerWidth,
@@ -40,38 +47,70 @@ const useStyles = makeStyles((theme) => ({
   profileIcon: {
     marginLeft: 'auto',
   },
-  footer: {
-    marginTop: 'auto',
-    height:'10px',
-    alignContent:'center',
-    backgroundColor: 'green',
-    width: '100%',
-    color:'white',
-    position: 'fixed',
-    bottom: 0,
-    zIndex: theme.zIndex.drawerPaper + 1,
-    left: 0,
 
-    [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing(3), // Increase padding for small screens and larger
-    },
-
-    [theme.breakpoints.up('md')]: {
-      fontSize: '1.2rem', // Increase font size for medium screens and larger
-    },
-
-    [theme.breakpoints.up('lg')]: {
-      padding: theme.spacing(4), // Increase padding for large screens and larger
-      fontSize: '1.5rem', // Increase font size for large screens and larger
-    },
-  },
 }));
 
 const ChefSidebar = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const [currentPage, setCurrentPage] = useState('chefdashboard');
+  const [userDetails, setUserDetails] = useState({});
+  const [username, setUsername] = useState({ username: '' })
+  
+  
 
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const storedUsername = localStorage.getItem('username'); 
+        if (storedUsername) {
+          setUsername(storedUsername);
+          const response = await axios.get(`http://localhost:8000/api/getuserbyusername/?username=${storedUsername}`);
+          setUserDetails(response.data);
+        }
+        
+      } catch (error) {
+        console.error('Error fetching user details:', error);
+      }
+    };
+    fetchUserDetails();
+  }, []);
+  
+  
+
+  const renderProfilePicture = () => {
+    if (userDetails && userDetails.user_image) {
+      return (
+        <Avatar src={`http://localhost:8000${userDetails.user_image}`} alt="Profile Picture" />
+      );
+    }
+    return <AccountCircleIcon />;
+  };
+
+  const handleLogout = async () => {
+    try {
+      const storedToken = localStorage.getItem('token'); // Corrected to retrieve the token
+      console.log("storedToken", storedToken)
+      if (!storedToken) {
+        console.error('No authentication token found');
+        return;
+      }
+      const config = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+
+      if (storedToken) {
+        config.headers['Authorization'] = `Token ${storedToken}`
+      }
+      await axios.post('http://localhost:8000/api/logout/', null, config);
+      localStorage.removeItem('token');
+      window.location.href = '/login'; // Example of redirecting to a login page
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -82,6 +121,9 @@ const ChefSidebar = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+    if (!window.matchMedia('(min-width: 600px)').matches) {
+      setOpen(false);
+    }
   };
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -121,7 +163,7 @@ const ChefSidebar = () => {
           </IconButton>
           <div className={classes.profileIcon}>
             <IconButton color="inherit" onClick={handleProfileMenuOpen}>
-              <AccountCircleIcon />
+            {renderProfilePicture()}
             </IconButton>
             <Menu
               id="profile-menu"
@@ -130,7 +172,8 @@ const ChefSidebar = () => {
               open={Boolean(anchorEl)}
               onClose={handleProfileMenuClose}
             >
-              <MenuItem onClick={handleProfileMenuClose}>Profile</MenuItem>
+              <MenuItem onClick={() => handlePageChange('Profile')}>Profile</MenuItem>
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
               <MenuItem onClick={handleProfileMenuClose}>Settings</MenuItem>
               <MenuItem onClick={handleProfileMenuClose}>Notifications</MenuItem>
             </Menu>
@@ -146,15 +189,16 @@ const ChefSidebar = () => {
         classes={{
           paper: classes.drawerPaper,
         }}
+        style={{ zIndex: 98 }}
       >
         <List>
-          <ListItem button onClick={() => handlePageChange('Chefdashboard')}>
+          <ListItem  className={classes.listItem} selected={currentPage === 'Chefdashboard'} button onClick={() => handlePageChange('Chefdashboard')}>
             <ListItemText primary="Dashboard" />
           </ListItem>
-          <ListItem button onClick={() => handlePageChange('Profile')}>
+          <ListItem className={classes.listItem} selected={currentPage === 'Profile'} button onClick={() => handlePageChange('Profile')}>
             <ListItemText primary="Profile" />
           </ListItem>
-          <ListItem button onClick={() => handlePageChange('Manageorders')}>
+          <ListItem className={classes.listItem} selected={currentPage === 'Manageorders'} button onClick={() => handlePageChange('Manageorders')}>
             <ListItemText primary="Manage Orders" />
           </ListItem>
         </List>
@@ -163,11 +207,6 @@ const ChefSidebar = () => {
         <Toolbar />
         {renderPage()}
       </main>
-      <Box className={classes.footer} justify-content={'center'}>
-        <Typography variant="body2" align="center">
-          © 2024 evahlukPOS. All rights reserved.
-        </Typography>
-      </Box>
     </div>
   );
 };
