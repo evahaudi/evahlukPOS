@@ -25,13 +25,13 @@ const WaiterLogin = () => {
 
 
     useEffect(() => {
-        console.log("userRef:", userRef); // Log userRef
+        console.log("userRef:", userRef);
         console.log("userRef.current:", userRef.current);
         userRef.current.focus();
     }, [username])
 
     useEffect(() => {
-        console.log("userRef:", userRef); // Log userRef
+        console.log("userRef:", userRef);
         console.log("userRef.current:", userRef.current);
         pwdRef.current.focus();
     }, [password])
@@ -73,7 +73,7 @@ const WaiterLogin = () => {
                     console.log('Redirecting to /dashboard');
                     navigate('/waitersidebar');
                 } else {
-                    // Redirect to another default page
+
                     console.log('Redirecting to /login');
                     navigate('/waiterLogin');
                 }

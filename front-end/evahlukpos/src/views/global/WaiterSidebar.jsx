@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   listItem: {
     '&.Mui-selected': {
       backgroundColor: 'purple',
-      color: 'white', 
+      color: 'white',
     },
   },
   drawerPaper: {
@@ -64,16 +64,16 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
 
     [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing(3), 
+      padding: theme.spacing(3),
     },
 
     [theme.breakpoints.up('md')]: {
-      fontSize: '1.2rem', 
+      fontSize: '1.2rem',
     },
 
     [theme.breakpoints.up('lg')]: {
-      padding: theme.spacing(4), 
-      fontSize: '1.5rem', 
+      padding: theme.spacing(4),
+      fontSize: '1.5rem',
     },
   },
 }));
@@ -114,7 +114,7 @@ const WaiterSidebar = () => {
 
   const handleLogout = async () => {
     try {
-      const storedToken = localStorage.getItem('token'); 
+      const storedToken = localStorage.getItem('token');
       console.log("storedToken", storedToken)
       if (!storedToken) {
         console.error('No authentication token found');
@@ -131,7 +131,7 @@ const WaiterSidebar = () => {
       }
       await axios.post('http://localhost:8000/api/logout/', null, config);
       localStorage.removeItem('token');
-      window.location.href = '/login'; 
+      window.location.href = '/login';
     } catch (error) {
       console.error('Error logging out:', error);
     }
@@ -216,15 +216,15 @@ const WaiterSidebar = () => {
       >
         <List>
           <ListItem className={classes.listItem} selected={currentPage === 'Waiterdashboard'}
-          button onClick={() => handlePageChange('Waiterdashboard')}>
-          <ListItemText primary="Dashboard" />
+            button onClick={() => handlePageChange('Waiterdashboard')}>
+            <ListItemText primary="Dashboard" />
           </ListItem>
           <ListItem className={classes.listItem} selected={currentPage === 'Profile'}
-          button onClick={() => handlePageChange('Profile')}>
-          <ListItemText primary="Profile" />
+            button onClick={() => handlePageChange('Profile')}>
+            <ListItemText primary="Profile" />
           </ListItem>
           <ListItem className={classes.listItem} selected={currentPage === 'Manageorders'}
-          button onClick={() => handlePageChange('Manageorders')}>
+            button onClick={() => handlePageChange('Manageorders')}>
             <ListItemText primary="Manage Orders" />
           </ListItem>
         </List>

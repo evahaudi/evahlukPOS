@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   listItem: {
     '&.Mui-selected': {
       backgroundColor: 'purple',
-      color: 'white', 
+      color: 'white',
     },
   },
   drawer: {
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    marginTop: theme.spacing(8), // Adjust this value to your preference
+    marginTop: theme.spacing(8),
   },
   content: {
     flexGrow: 1,
@@ -56,27 +56,27 @@ const ChefSidebar = () => {
   const [currentPage, setCurrentPage] = useState('chefdashboard');
   const [userDetails, setUserDetails] = useState({});
   const [username, setUsername] = useState({ username: '' })
-  
-  
+
+
 
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const storedUsername = localStorage.getItem('username'); 
+        const storedUsername = localStorage.getItem('username');
         if (storedUsername) {
           setUsername(storedUsername);
           const response = await axios.get(`http://localhost:8000/api/getuserbyusername/?username=${storedUsername}`);
           setUserDetails(response.data);
         }
-        
+
       } catch (error) {
         console.error('Error fetching user details:', error);
       }
     };
     fetchUserDetails();
   }, []);
-  
-  
+
+
 
   const renderProfilePicture = () => {
     if (userDetails && userDetails.user_image) {
@@ -89,7 +89,7 @@ const ChefSidebar = () => {
 
   const handleLogout = async () => {
     try {
-      const storedToken = localStorage.getItem('token'); // Corrected to retrieve the token
+      const storedToken = localStorage.getItem('token');
       console.log("storedToken", storedToken)
       if (!storedToken) {
         console.error('No authentication token found');
@@ -106,7 +106,7 @@ const ChefSidebar = () => {
       }
       await axios.post('http://localhost:8000/api/logout/', null, config);
       localStorage.removeItem('token');
-      window.location.href = '/login'; // Example of redirecting to a login page
+      window.location.href = '/login';
     } catch (error) {
       console.error('Error logging out:', error);
     }
@@ -163,7 +163,7 @@ const ChefSidebar = () => {
           </IconButton>
           <div className={classes.profileIcon}>
             <IconButton color="inherit" onClick={handleProfileMenuOpen}>
-            {renderProfilePicture()}
+              {renderProfilePicture()}
             </IconButton>
             <Menu
               id="profile-menu"
@@ -192,7 +192,7 @@ const ChefSidebar = () => {
         style={{ zIndex: 98 }}
       >
         <List>
-          <ListItem  className={classes.listItem} selected={currentPage === 'Chefdashboard'} button onClick={() => handlePageChange('Chefdashboard')}>
+          <ListItem className={classes.listItem} selected={currentPage === 'Chefdashboard'} button onClick={() => handlePageChange('Chefdashboard')}>
             <ListItemText primary="Dashboard" />
           </ListItem>
           <ListItem className={classes.listItem} selected={currentPage === 'Profile'} button onClick={() => handlePageChange('Profile')}>

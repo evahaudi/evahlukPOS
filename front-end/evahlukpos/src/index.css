@@ -1,20 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    font-family: 'Nunito', sans-serif;
-    font-size: 22px;
-    color: #fff;
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  color: #fff;
 }
 
 body {
-    min-height: 100vh;
-    background-color:blue;
+  min-height: 100vh;
+  background-color: blue;
 }
 
 .App {
@@ -22,7 +22,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; 
+  min-height: 100vh;
   padding: 1rem 0.5rem;
   background-image: url("/src/resto.jpeg");
   background-size: cover;
@@ -31,35 +31,38 @@ body {
 }
 
 section {
-    width: 100%;
-    max-width: 700px;
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 1rem;
-    background-color:green;
-    border-radius: 10px;
+  width: 100%;
+  max-width: 700px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+  background-color: green;
+  border-radius: 10px;
 }
 
 .input-container {
-    width: calc(33.33% - 16px); /* Adjust as needed */
-    margin-bottom: 1rem; /* Adjust as needed */
-  }
+  width: calc(33.33% - 16px);
+  margin-bottom: 1rem;
   
-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    flex-grow: 1;
-    padding-bottom: 2rem;
-    max-width: 900px; /* Adjust as needed */
-    margin: auto;
-    padding: 10px;
 }
 
-a, a:visited {
-    color: #fff;
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-grow: 1;
+  padding-bottom: 2rem;
+  max-width: 900px;
+  /* Adjust as needed */
+  margin: auto;
+  padding: 10px;
+}
+
+a,
+a:visited {
+  color: #fff;
 }
 
 input[type="text"],
@@ -82,84 +85,82 @@ button {
 }
 
 .instructions {
-    font-size: 0.75rem;
-    border-radius: 0.5rem;
-    background: #000;
-    color: #fff;
-    padding: 0.25rem;
-    position: relative;
-    bottom: -10px;
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  background: #000;
+  color: #fff;
+  padding: 0.25rem;
+  position: relative;
+  bottom: -10px;
 }
 
-.instructions > svg {
-    margin-right: 0.25rem;
+.instructions>svg {
+  margin-right: 0.25rem;
 }
 
 .offscreen {
-    position: absolute;
-    left: -9999px;
+  position: absolute;
+  left: -9999px;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 .valid {
-    color:greenyellow;
-    margin-left: 0.25rem;
+  color: greenyellow;
+  margin-left: 0.25rem;
 }
 
 .invalid {
-    color: red;
-    margin-left: 0.25rem;
+  color: red;
+  margin-left: 0.25rem;
 }
 
 .errmsg {
-    background-color: lightpink;
-    color: firebrick;
-    font-weight: bold;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
+  background-color: lightpink;
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .line {
-    display: inline-block;
+  display: inline-block;
 }
 
 .flexGrow {
-    flex-grow: 1;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
 }
 
 
-/* Add these styles to your CSS */
+
 .responsive-form {
+  width: 100%;
+  max-width: 700px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+  background-color: gray;
+  border-radius: 10px;
+}
+
+
+@media (max-width: 600px) {
+  .responsive-form {
+    padding: 10px;
+  }
+
+  .responsive-form label,
+  .responsive-form input,
+  .responsive-form select,
+  .responsive-form button {
     width: 100%;
-    max-width: 700px;
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 1rem;
-    background-color:gray;
-    border-radius: 10px;
+    box-sizing: border-box;
   }
-  
-  /* Adjustments for smaller screens */
-  @media (max-width: 600px) {
-    .responsive-form {
-      padding: 10px;
-    }
-  
-    /* You might need to further adjust specific elements */
-    .responsive-form label,
-    .responsive-form input,
-    .responsive-form select,
-    .responsive-form button {
-      width: 100%;
-      box-sizing: border-box;
-    }
-  }
-  
+}
