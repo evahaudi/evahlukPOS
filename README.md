@@ -76,7 +76,7 @@ Open a web browser and navigate to http://localhost:3000 to access the Evahluk P
 
 [
 ![POSpic1](front-end\evahlukpos\POSpic1.JPG)
-![POSpic2](https://github.com/evahaudi/evahlukPOS/assets/122022619/ab1ce8c0-5fd1-4e52-8739-905fbfe0ce75)
+![POSpic2](https://private-user-images.githubusercontent.com/122022619/303921129-00f40fdf-e3cb-4828-bb30-7a0582f51ff1.JPG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDc2NTg1NDIsIm5iZiI6MTcwNzY1ODI0MiwicGF0aCI6Ii8xMjIwMjI2MTkvMzAzOTIxMTI5LTAwZjQwZmRmLWUzY2ItNDgyOC1iYjMwLTdhMDU4MmY1MWZmMS5KUEc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwMjExJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDIxMVQxMzMwNDJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0xNTJkMzBhYmYzZDExOGRmMzU4NDdjMzhiOWFkZGQwMDI4OTY3NTAxNzlhODJjMzIzNjA0YThkMzFlODZlNDMzJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.6fGSQgq-rXKi3f5YiZaOU3fBZvz603g52VSfUnoqOJ8)
 ![POSpic3](https://github.com/evahaudi/evahlukPOS/assets/122022619/8852cf04-9c3a-43c3-a110-5d61952082eb)
 ![POSpic4](https://github.com/evahaudi/evahlukPOS/assets/122022619/c0ec97ea-9a59-4b1d-99dc-02801911cdf5)
 ]
