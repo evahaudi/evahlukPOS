@@ -43,7 +43,7 @@ function App() {
               <Route path="/about" element={<AboutUs />} />
               <Route path="/login" element={<CustomLogin />} />
               <Route path="/" element={<Home />} />
-            
+
               {/* protected  routes*/}
               <Route element={<RequireAuth allowedRoles={[ROLES.isWaiter]} />}>
                 <Route path="waitersidebar" element={<WaiterSidebar />} />

@@ -16,14 +16,11 @@ const ContactUs = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Process form submission here (send email, save to database, etc.)
-    // For demonstration purposes, let's just show the Swal success message
     Swal.fire({
       icon: 'success',
       title: 'Success!',
       text: 'Your message has been received and we will get in touch soon.',
     });
-    // Clear form fields after submission
     setFormData({ name: '', email: '', message: '' });
   };
 
@@ -78,9 +75,9 @@ const ContactUs = () => {
           </Button>
         </form>
       </Paper>
-      <br/>
-      <br/>
-      <br/>
+      <br />
+      <br />
+      <br />
     </Container>
   );
 };

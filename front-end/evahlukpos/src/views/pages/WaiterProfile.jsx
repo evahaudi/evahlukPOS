@@ -10,7 +10,6 @@ import { InputLabel } from '@material-ui/core';
 import axios from 'axios';
 
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(3),
@@ -66,7 +65,6 @@ const Profile = () => {
   const handleUpdateDetails = () => {
 
   };
-
 
   return (
     <>
