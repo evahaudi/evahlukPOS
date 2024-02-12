@@ -1,4 +1,23 @@
-# Evahluk Restaurant POS
+## Evahluk Restaurant POS
+
+## Screenshots
+
+![POSpic1](https://github.com/evahaudi/evahlukPOS/assets/122022619/dd428687-93b1-44a5-9e52-70d618f0b231)
+
+*Landipage View*
+
+![POSpic2](https://github.com/evahaudi/evahlukPOS/assets/122022619/61e32694-a5da-433d-93b6-6008d9f96bec)
+
+*The login page*
+
+![POSpic3](https://github.com/evahaudi/evahlukPOS/assets/122022619/f35a0d5f-b2a5-4689-8023-65fe7efa2ef1)
+
+*Dashboard for waiter*
+
+![POSpic4](https://github.com/evahaudi/evahlukPOS/assets/122022619/dd1097ae-90f9-4cfa-9979-0b5c3e7a7da7)
+
+*Success!*
+
 
 ## Overview
 
@@ -54,22 +73,12 @@ npm install
 Start the React development server:
 bash
 Copy code
-npm start
-
+npm start!
 
 Access the Application:
 Open a web browser and navigate to http://localhost:3000 to access the Evahluk POS system.
 
-## Screenshots
 
-![Screenshot 1](POSpic1.jpg)
-*Landipage View*
-
-![Screenshot 2](POSpic2.jpg)
-*The login page*
-
-![Screenshot 3](front-end\evahlukpos\POSpic1.JPG)
-*Dashboard for waiter*
 
 
 Contributing
