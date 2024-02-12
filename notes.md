@@ -4,6 +4,7 @@ virtualenv venv
 pip install django
 pip install djangorestframework
 pip install psycopg2
+python -m pip install Pillow #added thes
 # pip install django-postgresql
 pip install django-cors-headers
 # npm install
