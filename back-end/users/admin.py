@@ -10,5 +10,3 @@ admin.site.register(Table)
 admin.site.register(Order)
 admin.site.register(Users)
 admin.site.register(UserProfile)
-
-
