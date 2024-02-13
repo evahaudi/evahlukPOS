@@ -40,9 +40,9 @@ jobs:
           cd back-end
           python manage.py test
       - name: Install Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: '16'
+          node-version: '20'
           
 
       - name: Install npm dependencies
