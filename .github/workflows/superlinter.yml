@@ -24,18 +24,17 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
-                
-               - name: install node modules
-  # You may pin to the exact commit or the version.
-  # uses: tecolicom/actions-install-node-modules@c47ae7b1b5e9cfc13b05c0eae39de6d2bc3667bb
-  uses: tecolicom/actions-install-node-modules@v0.3
-  with:
-    # 
-    root: # optional, default is .
-    # 
-    cache: # optional, default is true
-    # 
-    key: # optional
+      - name: install node modules
+       # You may pin to the exact commit or the version.
+       # uses: tecolicom/actions-install-node-modules@c47ae7b1b5e9cfc13b05c0eae39de6d2bc3667bb
+        uses: tecolicom/actions-install-node-modules@v0.3
+        with:
+        # 
+          root: # optional, default is .
+          # 
+          cache: # optional, default is true
+          #
+          key: # optional
           
           
       - name: Create virtual environment
