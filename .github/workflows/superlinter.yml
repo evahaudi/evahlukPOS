@@ -17,6 +17,12 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: '3.x'
+      - name: Clear action cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+
 
       - name: Create virtual environment
         run: |
