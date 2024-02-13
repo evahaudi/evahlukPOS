@@ -6,70 +6,74 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0001_initial'),
+        ("users", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='chef',
-            name='cuisine_specialty',
+            model_name="chef",
+            name="cuisine_specialty",
         ),
         migrations.RemoveField(
-            model_name='chef',
-            name='experience_years',
+            model_name="chef",
+            name="experience_years",
         ),
         migrations.RemoveField(
-            model_name='manager',
-            name='department',
+            model_name="manager",
+            name="department",
         ),
         migrations.AddField(
-            model_name='users',
-            name='department',
+            model_name="users",
+            name="department",
             field=models.CharField(blank=True, max_length=50, null=True),
         ),
         migrations.AddField(
-            model_name='users',
-            name='experience_years',
+            model_name="users",
+            name="experience_years",
             field=models.IntegerField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='menuitem',
-            name='name',
+            model_name="menuitem",
+            name="name",
             field=models.CharField(blank=True, max_length=50, null=True),
         ),
         migrations.AlterField(
-            model_name='menuitem',
-            name='price',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=8, null=True),
+            model_name="menuitem",
+            name="price",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=8, null=True
+            ),
         ),
         migrations.AlterField(
-            model_name='order',
-            name='order_date',
+            model_name="order",
+            name="order_date",
             field=models.DateTimeField(auto_now_add=True, null=True),
         ),
         migrations.AlterField(
-            model_name='order',
-            name='total_amount',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=10, null=True),
+            model_name="order",
+            name="total_amount",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=10, null=True
+            ),
         ),
         migrations.AlterField(
-            model_name='table',
-            name='capacity',
+            model_name="table",
+            name="capacity",
             field=models.IntegerField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='table',
-            name='table_number',
+            model_name="table",
+            name="table_number",
             field=models.IntegerField(blank=True, null=True, unique=True),
         ),
         migrations.AlterField(
-            model_name='users',
-            name='created_at',
+            model_name="users",
+            name="created_at",
             field=models.DateTimeField(auto_now_add=True, null=True),
         ),
         migrations.AlterField(
-            model_name='users',
-            name='updated_at',
+            model_name="users",
+            name="updated_at",
             field=models.DateTimeField(auto_now=True, null=True),
         ),
     ]
